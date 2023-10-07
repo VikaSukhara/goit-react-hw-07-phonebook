@@ -1,39 +1,65 @@
-import { nanoid } from 'nanoid';
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 
-
-const contacts = [];
-
-// slice
 const slice = createSlice({
   name: 'contacts',
-  initialState: contacts,
-  reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare({ name, number }) {
-        return {
-          payload: {
-            id: nanoid(),
-            name,
-            number,
-          },
-        };
-      },
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: {
+    [fetchContacts.pending](state) {
+      state.isLoading = true;
     },
-    deleteContact(state, action) {
-      // state.filter = state.filter(task => task.id !== action.payload);
-
-      const index = state.findIndex(contact => contact.id === action.payload);
-      state.splice(index, 1);
+    [fetchContacts.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
+    },
+    [fetchContacts.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { addContact, deleteContact } = slice.actions;
 export const contactReducer = slice.reducer;
+
+// extraReducers: builder => {
+//   builder.addCase(fetchContacts.fulfilled, (state, action) => {
+//     state.isLoading = false;
+//     state.error = null;
+//     state.items = action.payload;
+//   });
+// }
+
+// reducers: {
+//   addContact: {
+//     reducer(state, action) {
+//       state.push(action.payload);
+//     },
+//     prepare({ name, number }) {
+//       return {
+//         payload: {
+//           id: nanoid(),
+//           name,
+//           number,
+//         },
+//       };
+//     },
+//   },
+//   deleteContact(state, action) {
+//     // state.filter = state.filter(task => task.id !== action.payload);
+
+//     const index = state.findIndex(contact => contact.id === action.payload);
+//     state.splice(index, 1);
+//   },
+// },
+
+//////////////////////////////////////////////////////////////////
+// export const { addContact, deleteContact } = slice.actions;
+// export const contactReducer = slice.reducer;
 
 // action = грузовик, який везе дію користувача
 
@@ -54,7 +80,7 @@ export const contactReducer = slice.reducer;
 //     },
 //   };
 // };
-
+// fetchContacts()
 /////////////////////////////////////REDUCERS //////////////////////////
 
 // export const contactReducer = (state = { contacts }, action) => {
