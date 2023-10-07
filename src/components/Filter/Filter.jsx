@@ -1,5 +1,5 @@
 import { filter } from '../redux/filterSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -7,10 +7,6 @@ export const Filter = () => {
     dispatch(filter(value));
   };
 
-  // const filters = useSelector(state => state.filterStore);
-  // const dispatch = useDispatch();
-  // const filtered = event => dispatch(filter(event.target.value));
-  // console.log(filtered);
 
   return (
     <div>
