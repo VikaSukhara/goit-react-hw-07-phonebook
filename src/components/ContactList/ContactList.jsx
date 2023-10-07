@@ -1,8 +1,8 @@
-import React from 'react';
-import { List, Item, Paragraph, Button } from './ContactList.styled';
-import {
-  //  useDispatch, 
-  useSelector } from 'react-redux';
+// import React from 'react';
+// import { List, Item, Paragraph, Button } from './ContactList.styled';
+import { 
+  // useDispatch, 
+useSelector } from 'react-redux';
 // import { deleteContact } from '../redux/contactsSlice';
 
 export const ContactList = () => {
@@ -10,13 +10,13 @@ export const ContactList = () => {
   // const filter = useSelector(state => state.filterStore);
 
 //чому андеайнд???
-//  const contactsInfo = useSelector(state => state.contacts.items);
-//  const loadingInfo = useSelector(state => state.contacts.isLoading);
-// const errorInfo = useSelector(state => state.contacts.error);
+ const contactsInfo = useSelector(state => state.contacts.items);
+ const loadingInfo = useSelector(state => state.contacts.isLoading);
+const errorInfo = useSelector(state => state.contacts.error);
 
-// console.log(contactsInfo)
-// console.log(loadingInfo)
-// console.log(errorInfo)
+console.log(contactsInfo)
+console.log(loadingInfo)
+console.log(errorInfo)
 
 
 
