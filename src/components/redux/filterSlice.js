@@ -1,27 +1,19 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// const filterInitioal = '';
+const filterInitioal = '';
 
-// const slice = createSlice({
-//   name: 'filter',
-//   initialState: filterInitioal,
-//   reducers: {
-//     filter: {
-//       reducer(state, action) {
-//         // const filteredUsers = state.contacts.filter(contact => {
-//         //   return contact.name
-//         //     .toLocaleLowerCase()
-//         //     .includes(action.payload.toLocaleLowerCase());
-//         // });
-//         return action.payload;
-//         // state.contacts =  filteredUsers;
-//       },
-//     },
-//   },
-// });
+const slice = createSlice({
+  name: 'filter',
+  initialState: filterInitioal,
+  reducers: {
+    filter(state, action) {
+      return action.payload;
+    },
+  },
+});
 
-// export const { filter } = slice.actions;
-// export const filterReducer = slice.reducer;
+export const { filter } = slice.actions;
+export const filterReducer = slice.reducer;
 
 // ///////////////////////////////ACTION////////////////////////
 

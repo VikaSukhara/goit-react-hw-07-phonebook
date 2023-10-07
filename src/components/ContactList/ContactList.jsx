@@ -1,52 +1,43 @@
 // import React from 'react';
-// import { List, Item, Paragraph, Button } from './ContactList.styled';
-import { 
-  // useDispatch, 
-useSelector } from 'react-redux';
-// import { deleteContact } from '../redux/contactsSlice';
+import { List, Item, Paragraph, Button } from './ContactList.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'components/redux/operations';
+
 
 export const ContactList = () => {
-  // const dispatch = useDispatch();
-  // const filter = useSelector(state => state.filterStore);
-
-//чому андеайнд???
- const contactsInfo = useSelector(state => state.contactsStore.items);
- const loadingInfo = useSelector(state =>state.contactsStore.isLoading);
-const errorInfo = useSelector(state => state.contactsStore.error);
-
-console.log(contactsInfo)
-console.log(loadingInfo)
-console.log(errorInfo)
+  const dispatch = useDispatch();
 
 
+  const filter = useSelector(state => state.filterStore);
+  const contactsData = useSelector(state => state.contactsStore.items);
+  console.log(contactsData);
 
-// console.log("contacts", contacts)
-  // const filteredUsers = contacts.filter(contact => {
-  //   return contact.name
-  //     .toLocaleLowerCase()
-  //     .includes(filter.toLocaleLowerCase());
-  // });
 
-  // return (
-  //   <List>
-  //     {contacts.map(contact => {
-  //       return (
-  //         <Item key={contact.id}>
-  //           <Paragraph>
-  //             {contact.name} : {contact.number}
-  //           </Paragraph>
-  //           <Button
-  //             type="button"
-  //             onClick={() => console.log("uraaa")
-  //              }
-  //               // dispatch(deleteContact(contact.id))
-              
-  //           >
-  //             Delete
-  //           </Button>
-  //         </Item>
-  //       );
-  //     })}
-  //   </List>
-  // );
+  const filteredUsers = contactsData.filter(contact => {
+    return contact.name
+      .toLocaleLowerCase()
+      .includes(filter.toLocaleLowerCase());
+  });
+
+
+
+  return (
+    <List>
+      {filteredUsers.map(contact => {
+        return (
+          <Item key={contact.id}>
+            <Paragraph>
+              {contact.name} : {contact.phone}
+            </Paragraph>
+            <Button
+              type="button"
+              onClick={() => dispatch(deleteContact(contact.id))}
+            >
+              Delete
+            </Button>
+          </Item>
+        );
+      })}
+    </List>
+  );
 };
