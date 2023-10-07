@@ -10,9 +10,9 @@ export const ContactList = () => {
   // const filter = useSelector(state => state.filterStore);
 
 //чому андеайнд???
- const contactsInfo = useSelector(state => state.contacts.items);
- const loadingInfo = useSelector(state => state.contacts.isLoading);
-const errorInfo = useSelector(state => state.contacts.error);
+ const contactsInfo = useSelector(state => state.contactsStore.items);
+ const loadingInfo = useSelector(state =>state.contactsStore.isLoading);
+const errorInfo = useSelector(state => state.contactsStore.error);
 
 console.log(contactsInfo)
 console.log(loadingInfo)
