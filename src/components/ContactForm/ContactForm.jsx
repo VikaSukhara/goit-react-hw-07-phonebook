@@ -10,7 +10,6 @@ import {
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'components/redux/operations';
-// import { addContact } from '../redux/operations';
 
 const validation = Yup.object().shape({
   name: Yup.string()
@@ -26,26 +25,20 @@ const validation = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contactsStore.items);
-  const handlerSubmittingForm = ({ name, phone }) => {
-    console.log('click');
+  const handlerSubmittingForm = ({ name, number }) => {
     if (contacts.find(contact => contact.name === name)) {
       alert(`${name} is alredy in contacts`);
       return;
     }
-    const newContact = { name, phone };
-
+    const newContact = { name, number };
     dispatch(addContact(newContact));
-    console.log('newContact', newContact);
   };
-
-
-  
   return (
     <div>
       <Formik
         initialValues={{
           name: '',
-          phone: '',
+          number: '',
         }}
         validationSchema={validation}
         onSubmit={(values, actions) => {
@@ -68,11 +61,11 @@ export const ContactForm = () => {
             Number
             <StyledInput
               type="tel"
-              name="phone"
+              name="number"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-            <StyledError name="phone" component="div" />
+            <StyledError name="number" component="div" />
           </StyledLavel>
 
           <StyledButton type="submit">Add contact</StyledButton>
