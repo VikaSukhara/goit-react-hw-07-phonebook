@@ -10,6 +10,7 @@ import {
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'components/redux/operations';
+import { selectorContacts } from 'components/redux/selectors';
 
 const validation = Yup.object().shape({
   name: Yup.string()
@@ -24,7 +25,7 @@ const validation = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contactsStore.items);
+  const contacts = useSelector(selectorContacts);
   const handlerSubmittingForm = ({ name, number }) => {
     if (contacts.find(contact => contact.name === name)) {
       alert(`${name} is alredy in contacts`);
